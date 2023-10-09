@@ -6,14 +6,6 @@ import { Note } from "../Note";
 export abstract class TraceNote extends Note {
     readonly abstract judgmentFrames : JudgmentFrames;
 
-    touch(touch : Touch) {
-        const touching = super.touch(touch);
-
-        if(touching) this.judge(touch);
-
-        return touching;
-    }
-
     judge(touch : Touch) : void {
         this.state = NoteState.Inactive;
         this.judgment = judgeFrame(this.noteTime, touch, this.judgmentFrames);

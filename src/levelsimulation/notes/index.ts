@@ -24,8 +24,12 @@ export const noteTypes : { [index : string] : typeof Note} = {
 }
 
 export const noteMeta = {
-    NormalTraceNote : [1, 1],
-    CriticalTraceNote : [1, 1],
-    NormalFlickTraceNote : [1, 1],
-    CriticalFlickTraceNote : [1, 1]
+    NormalTraceNote : [ 1, 1 ],
+    CriticalTraceNote : [ 1, 1 ],
+    NormalFlickTraceNote : [ 1, 1 ],
+    CriticalFlickTraceNote : [ 1, 1 ],
+    NormalTapNote : [ 1, 1 ],
+    CriticalTapNote : [ 1, 1 ],
+    NormalFlickNote : [ 1, 1 ],
+    CriticalFlickNote : [ 1, 1 ]
 } satisfies { [key : string] : number[] & { length : 2 } };

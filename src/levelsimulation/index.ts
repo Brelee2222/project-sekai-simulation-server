@@ -55,5 +55,21 @@ export const noteJudgments = {
     CriticalFlickTraceNote : {
         before : [ 6.5, 6.5, 6.5, 5.5 ],
         after : [ 7.5, 7.5, 7.5, 7.5 ]
+    },
+    NormalTapNote : {
+        before : [ 2.5, 5.0, 6.5, 7.0 ],
+        after : [ 2.5, 5.0, 6.5, 7.0 ]
+    },
+    CriticalTapNote : {
+        before : [ 3.299999952316284, 4.5, 6.5, 7.5 ],
+        after : [ 3.299999952316284, 4.5, 6.5, 7.5 ]
+    },
+    NormalFlickNote : {
+        before : [ 2.5, 6.5, 7.0, 7.5 ],
+        after : [ 2.5, 7.5, 8.0, 8.5 ]
+    },
+    CriticalFlickNote : {
+        before : [ 3.5, 6.5, 7.0, 7.5 ],
+        after : [ 3.5, 7.5, 8.0, 8.5 ]
     }
 } satisfies { [index : string] : JudgmentFrames };

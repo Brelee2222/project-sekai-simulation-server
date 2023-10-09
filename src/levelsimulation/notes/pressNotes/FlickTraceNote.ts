@@ -18,7 +18,7 @@ export abstract class FlickTraceNote extends TraceNote {
         if(this.judgment === Judgment.Perfect && !flickingCorrectDirection(touch, this.flickDirection)) this.judgment = Judgment.Great;
     }
 
-    touch(touch : Touch) : boolean {
-        return super.touch(touch) && flicking(touch);
+    shouldJudge(touch : Touch) : boolean {
+        return super.shouldJudge(touch) && flicking(touch);
     }
 }

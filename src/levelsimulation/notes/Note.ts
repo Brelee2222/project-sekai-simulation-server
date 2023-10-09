@@ -23,9 +23,14 @@ export abstract class Note {
         this.noteTime = beatAt((getEntityDataName(this.entityData, EngineArchetypeDataName.Beat) as { value : number }).value).time;
     }
 
-    touch(touch : Touch) : boolean {
+    touch(touch : Touch) : void {        
+        if(this.shouldJudge(touch)) this.judge(touch);
+    }
+
+    shouldJudge(touch : Touch) : boolean {
         return this.hitbox.touching(touch.pos, touch.radius);
     }
 
     abstract update(time : number) : void;
+    abstract judge(touch : Touch) : void;
 }
