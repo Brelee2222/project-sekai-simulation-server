@@ -23,6 +23,8 @@ export const noteTypes : { [index : string] : typeof Note} = {
     NormalTraceNote
 }
 
+export type NoteMeta = number[] & { length : 2 }
+
 export const noteMeta = {
     NormalTraceNote : [ 1, 1 ],
     CriticalTraceNote : [ 1, 1 ],
@@ -31,5 +33,9 @@ export const noteMeta = {
     NormalTapNote : [ 1, 1 ],
     CriticalTapNote : [ 1, 1 ],
     NormalFlickNote : [ 1, 1 ],
-    CriticalFlickNote : [ 1, 1 ]
-} satisfies { [key : string] : number[] & { length : 2 } };
+    CriticalFlickNote : [ 1, 1 ],
+    NormalSlideStartNote : [ 1, 1 ],
+    CriticalSlideStartNote : [ 1, 1 ],
+    NormalSlideEndNote : [ 1, 1 ],
+    CriticalSlideEndNote : [ 1, 1 ]
+} satisfies { [key : string] : NoteMeta };

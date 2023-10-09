@@ -57,8 +57,8 @@ export const noteJudgments = {
         after : [ 7.5, 7.5, 7.5, 7.5 ]
     },
     NormalTapNote : {
-        before : [ 2.5, 5.0, 6.5, 7.0 ],
-        after : [ 2.5, 5.0, 6.5, 7.0 ]
+        before : [ 2.5, 5.0, 6.5, 7.5 ],
+        after : [ 2.5, 5.0, 6.5, 7.5 ]
     },
     CriticalTapNote : {
         before : [ 3.299999952316284, 4.5, 6.5, 7.5 ],
@@ -71,5 +71,21 @@ export const noteJudgments = {
     CriticalFlickNote : {
         before : [ 3.5, 6.5, 7.0, 7.5 ],
         after : [ 3.5, 7.5, 8.0, 8.5 ]
+    },
+    NormalSlideStartNote : {
+        before : [ 2.5, 5.0, 6.5, 7.5 ],
+        after : [ 2.5, 5.0, 6.5, 7.5 ]
+    },
+    CriticalSlideStartNote : {
+        before : [ 3.299999952316284, 4.5, 6.5, 7.5 ],
+        after : [ 3.299999952316284, 4.5, 6.5, 7.5 ]
+    },
+    NormalSlideEndNote : {
+        before : [ 3.5, 6.5, 7.5, 7.5 ],
+        after : [ 4.0, 8.0, 8.5, 8.5 ]
+    },
+    CriticalSlideEndNote : {
+        before : [ 3.5, 6.5, 7.5, 7.5 ],
+        after : [ 4.0, 8.0, 8.5, 8.5 ]
     }
 } satisfies { [index : string] : JudgmentFrames };

@@ -1,6 +1,7 @@
 import { EngineArchetypeDataName, EngineArchetypeName, LevelData, LevelDataEntity } from "sonolus-core";
 import { getEntityDataName } from ".";
 import { Note } from "./notes/Note";
+import { Touch } from "./geometry/Touch";
 
 export enum NoteState {
     Active,
@@ -18,7 +19,7 @@ let bpmChanges : BeatStamp[];
 
 let notes : Note[];
 
-let time : number;
+let time = 0;
 
 export function loadLevel(levelData : LevelData) {
     const levelEntities : LevelDataEntity[] = levelData.entities;
@@ -86,8 +87,8 @@ export function timeAt(time : number) : BeatStamp {
     }
 }
 
-export function touch(...touches : Touch[]) {
-    
+export function touch(touch : Touch) {
+    for(const note of notes) if(note.touch(touch)) return;
 }
 
 export function replayLevel() : void {
