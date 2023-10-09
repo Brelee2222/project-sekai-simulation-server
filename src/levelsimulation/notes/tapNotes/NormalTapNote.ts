@@ -1,5 +1,5 @@
-import { noteMeta } from "../..";
-import { noteJudgments } from "../../..";
+import { noteMeta } from "..";
+import { noteJudgments } from "../..";
 import { TapNote } from "./TapNote";
 
 export class NormalTapNote extends TapNote {

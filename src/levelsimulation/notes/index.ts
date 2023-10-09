@@ -1,6 +1,6 @@
 import { LevelDataEntity } from "sonolus-core";
 import { Note } from "./Note";
-import { NormalTraceNote } from "./pressNotes/NormalTraceNote";
+import { NormalTraceNote } from "./traceNotes/NormalTraceNote";
 import { getEntityDataName } from "..";
 import { Touch } from "../geometry/Touch";
 

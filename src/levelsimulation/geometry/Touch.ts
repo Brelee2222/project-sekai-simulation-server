@@ -9,6 +9,8 @@ export interface Touch {
 
     pressed : boolean;
 
+    pressing : boolean;
+
     touchTime : number;
 
     lastTouchTime : number;

@@ -1,5 +1,5 @@
-import { noteMeta } from "../..";
-import { JudgmentFrames, noteJudgments } from "../../..";
+import { noteMeta } from "..";
+import { JudgmentFrames, noteJudgments } from "../..";
 import { FlickNote } from "./FlickNote";
 
 export class NormalFlickNote extends FlickNote {

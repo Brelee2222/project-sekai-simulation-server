@@ -1,5 +1,5 @@
-import { flicking } from "../..";
-import { Touch } from "../../../geometry/Touch";
+import { flicking } from "..";
+import { Touch } from "../../geometry/Touch";
 import { TapNote } from "./TapNote";
 
 export abstract class FlickNote extends TapNote {
