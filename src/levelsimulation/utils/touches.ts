@@ -6,6 +6,6 @@ export function tap(touch : Touch) {
     touches.push(touch);
 }
 
-export function untap(touch : Touch) {
-    touches.splice(touches.indexOf(touch), 1);
+export function updateTouches() {
+    touches = touches.filter(touches => touches.pressing);
 }

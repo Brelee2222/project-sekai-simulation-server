@@ -1,6 +1,7 @@
 import { LevelData, LevelDataEntity } from "sonolus-core";
 import { Note } from "./notes/Note";
 import { beatAtTime, loadBeats } from "./utils/beat";
+import { updateTouches } from "./utils/touches";
 
 let notes : Note[];
 
@@ -34,6 +35,9 @@ export function step(seconds : number) {
     time += seconds;
 
     notes.forEach(note => note.touch());
+
+    updateTouches();
+
     notes.forEach(note => note.update());
 }
 

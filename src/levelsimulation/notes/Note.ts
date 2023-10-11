@@ -8,6 +8,7 @@ import { beatAt } from "../utils/beat";
 import { touches } from "../utils/touches";
 import { Touch } from "../utils/geometry/Touch";
 import { Vector2 } from "../utils/geometry/Vector2";
+import { hitboxBottom, hitboxTop } from ".";
 
 export abstract class Note {
     entityData! : LevelDataEntity;
@@ -32,8 +33,7 @@ export abstract class Note {
         const lEdge = (getEntityDataName(this.entityData, "lane") as { value : number }).value;
         const rEdge = lEdge + (getEntityDataName(this.entityData, "size") as { value : number }).value;
 
-        // TODO: define hitbox top and bottom
-        this.hitbox = new Hitbox(new Vector2(lEdge, -10), new Vector2(rEdge, 10)); 
+        this.hitbox = new Hitbox(new Vector2(rEdge, hitboxTop), new Vector2(lEdge, hitboxBottom)); 
     }
 
     update() : void {
@@ -41,6 +41,8 @@ export abstract class Note {
     }
 
     touch() : void {
+        if(this.state == NoteState.Inactive) return;
+
         for(const touch of touches) {
             if(this.shouldJudge(touch)) {
                 this.judge(touch);

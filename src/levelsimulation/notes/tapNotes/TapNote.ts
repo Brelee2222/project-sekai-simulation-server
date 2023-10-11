@@ -7,6 +7,8 @@ export abstract class TapNote extends TraceNote {
 
         if(touch.occupied) return false;
 
-        return super.shouldJudge(touch);
+        if(!super.shouldJudge(touch)) return false;
+
+        return touch.occupied = true;
     }
 }
