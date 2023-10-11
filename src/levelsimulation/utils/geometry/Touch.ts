@@ -7,11 +7,11 @@ export interface Touch {
 
     vpos : Vector2;
 
-    pressed : boolean;
-
     pressing : boolean;
+
+    occupied : boolean;
 
     touchTime : number;
 
-    lastTouchTime : number;
+    touchStartTime : number;
 }

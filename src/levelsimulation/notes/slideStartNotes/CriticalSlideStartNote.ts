@@ -1,8 +1,8 @@
-import { noteMeta } from "..";
-import { noteJudgments } from "../..";
+import { noteTypeMeta } from "../..";
+import { noteJudgments } from "../../judgment";
 import { TapNote } from "../tapNotes/TapNote";
 
 export class CriticalSlideStartNote extends TapNote {
-    judgmentFrames = noteJudgments.CriticalSlideStartNote;
-    meta = noteMeta.CriticalSlideStartNote;
+    judgmentTimes = noteJudgments.CriticalSlideStartNote;
+    noteTypeMeta = noteTypeMeta.CriticalSlideStartNote;
 }

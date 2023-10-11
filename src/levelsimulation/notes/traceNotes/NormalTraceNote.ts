@@ -1,8 +1,8 @@
-import { noteMeta } from "..";
-import { noteJudgments } from "../..";
-import { FlickTraceNote } from "./FlickTraceNote";
+import { noteTypeMeta } from "../..";
+import { noteJudgments } from "../../judgment";
+import { TraceNote } from "./TraceNote";
 
-export class NormalTraceNote extends FlickTraceNote {
-    judgmentFrames = noteJudgments.NormalFlickTraceNote;
-    meta = noteMeta.NormalFlickTraceNote;
+export class NormalTraceNote extends TraceNote {
+    judgmentTimes = noteJudgments.NormalTraceNote;
+    noteTypeMeta = noteTypeMeta.NormalTraceNote;
 }

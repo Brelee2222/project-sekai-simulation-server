@@ -1,8 +1,8 @@
-import { noteMeta } from "..";
-import { noteJudgments } from "../..";
+import { noteTypeMeta } from "../..";
+import { noteJudgments } from "../../judgment";
 import { TraceNote } from "./TraceNote";
 
 export class CriticalTraceNote extends TraceNote {
-    judgmentFrames = noteJudgments.CriticalTraceNote;
-    meta = noteMeta.CriticalTraceNote;
+    judgmentTimes = noteJudgments.CriticalTraceNote;
+    noteTypeMeta = noteTypeMeta.CriticalTraceNote;
 }

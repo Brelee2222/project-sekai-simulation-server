@@ -1,8 +1,8 @@
-import { noteMeta } from "..";
-import { noteJudgments } from "../..";
+import { noteTypeMeta } from "../..";
+import { noteJudgments } from "../../judgment";
 import { SlideEndNote } from "./SlideEndNote";
 
 export class CriticalSlideEndNote extends SlideEndNote {
-    judgmentFrames = noteJudgments.CriticalSlideEndNote;
-    meta = noteMeta.CriticalSlideEndNote;
+    judgmentTimes = noteJudgments.CriticalSlideEndNote;
+    noteTypeMeta = noteTypeMeta.CriticalSlideEndNote;
 }

@@ -1,25 +1,32 @@
-import { JudgmentFrames, judgeFrame } from "../..";
-import { Touch } from "../../geometry/Touch";
-import { NoteState } from "../../levelSimulation";
+import { NoteState } from "../..";
+import { JudgmentTimes, judgeTime } from "../../judgment";
+import { time } from "../../levelSimulation";
+import { Touch } from "../../utils/geometry/Touch";
 import { Note } from "../Note";
 
 export abstract class TraceNote extends Note {
-    readonly abstract judgmentFrames : JudgmentFrames;
+    readonly abstract judgmentTimes : JudgmentTimes;
 
-    judge(touch : Touch) : void {
-        this.state = NoteState.Inactive;
-        this.judgment = judgeFrame(this.noteTime, touch, this.judgmentFrames);
+    inputTime! : { min : number, max : number };
+
+    touch() {
+        if(time < this.inputTime.min) return;
+
+        super.touch();
     }
 
-    update(time : number) {
-        switch(this.state) {
-            case NoteState.Idle:
-                if(this.judgmentFrames.before[3] > time) this.state = NoteState.Active;
-                break;
+    init() {
+        super.init();
 
-            case NoteState.Active:
-                if(this.judgmentFrames.after[3] < time) this.state = NoteState.Inactive;
-                break;
+        this.inputTime = {
+            min : this.noteTime - this.judgmentTimes.before[3],
+            max : this.noteTime + this.judgmentTimes.after[3]
         }
+    }
+
+    judge(touch : Touch) : void {
+        this.tap = touch.touchTime;
+        this.state = NoteState.Inactive;
+        this.judgment = judgeTime(this.noteTime, touch, this.judgmentTimes);
     }
 }

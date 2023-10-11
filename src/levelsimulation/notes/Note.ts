@@ -1,41 +1,61 @@
 import { EngineArchetypeDataName, LevelDataEntity } from "sonolus-core";
-import { NoteState, beatAt } from "../levelSimulation";
-import { Judgment, getEntityDataName } from "..";
-import { Hitbox } from "../geometry/Hitbox";
-import { Touch } from "../geometry/Touch";
-import { NoteMeta } from ".";
+import { NoteDataMeta, NoteState } from "..";
+import { Judgment } from "../judgment";
+import { getEntityDataName } from "..";
+import { Hitbox } from "../utils/geometry/Hitbox";
+import { NoteTypeMeta } from "..";
+import { beatAt } from "../utils/beat";
+import { touches } from "../utils/touches";
+import { Touch } from "../utils/geometry/Touch";
+import { Vector2 } from "../utils/geometry/Vector2";
 
 export abstract class Note {
     entityData! : LevelDataEntity;
 
     noteTime! : number;
 
+    index! : number;
+
     hitbox! : Hitbox;
 
-    tap? : number;
+    tap : number = NaN;
 
     judgment : Judgment = Judgment.Miss;
 
     state : NoteState = NoteState.Idle;
 
-    readonly abstract meta : NoteMeta;
+    readonly abstract noteTypeMeta : NoteTypeMeta;
 
     init() : void {
         this.noteTime = beatAt((getEntityDataName(this.entityData, EngineArchetypeDataName.Beat) as { value : number }).value).time;
+
+        const lEdge = (getEntityDataName(this.entityData, "lane") as { value : number }).value;
+        const rEdge = lEdge + (getEntityDataName(this.entityData, "size") as { value : number }).value;
+
+        // TODO: define hitbox top and bottom
+        this.hitbox = new Hitbox(new Vector2(lEdge, -10), new Vector2(rEdge, 10)); 
     }
 
-    touch(touch : Touch) : boolean {    
-        const shouldJudge = this.shouldJudge(touch);
-        
-        if(shouldJudge) this.judge(touch);
+    update() : void {
+        // TODO: add
+    }
 
-        return shouldJudge;
+    touch() : void {
+        for(const touch of touches) {
+            if(this.shouldJudge(touch)) {
+                this.judge(touch);
+                return;
+            }
+        }
     }
 
     shouldJudge(touch : Touch) : boolean {
         return this.hitbox.touching(touch.pos, touch.radius);
     }
 
-    abstract update(time : number) : void;
+    get noteDataMeta() : NoteDataMeta {
+        return [ 0, 0 ];
+    }
+
     abstract judge(touch : Touch) : void;
 }

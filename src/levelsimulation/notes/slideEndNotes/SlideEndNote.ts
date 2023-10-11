@@ -1,8 +1,8 @@
-import { Touch } from "../../geometry/Touch";
+import { Touch } from "../../utils/geometry/Touch";
 import { TraceNote } from "../traceNotes/TraceNote";
 
 export abstract class SlideEndNote extends TraceNote {
     shouldJudge(touch: Touch): boolean {
-        return super.shouldJudge(touch) && !touch.pressing && touch.pressed;
+        return super.shouldJudge(touch) && !touch.pressing;
     }
 }
