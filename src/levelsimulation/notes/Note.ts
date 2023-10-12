@@ -10,7 +10,7 @@ import { Touch } from "../utils/geometry/Touch";
 import { Vector2 } from "../utils/geometry/Vector2";
 import { hitboxBottom, hitboxTop } from ".";
 
-export abstract class Note {
+export class Note {
     entityData! : LevelDataEntity;
 
     noteTime! : number;
@@ -19,13 +19,13 @@ export abstract class Note {
 
     hitbox! : Hitbox;
 
-    tap : number = NaN;
+    tap : number = -1;
 
     judgment : Judgment = Judgment.Miss;
 
     state : NoteState = NoteState.Idle;
 
-    readonly abstract noteTypeMeta : NoteTypeMeta;
+    noteTypeMeta! : NoteTypeMeta;
 
     init() : void {
         this.noteTime = beatAt((getEntityDataName(this.entityData, EngineArchetypeDataName.Beat) as { value : number }).value).time;
@@ -59,5 +59,5 @@ export abstract class Note {
         return [ 0, 0 ];
     }
 
-    abstract judge(touch : Touch) : void;
+    judge(touch : Touch) : void {};
 }

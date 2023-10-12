@@ -1,8 +1,8 @@
 import { noteTypeMeta } from "../..";
 import { noteJudgments } from "../../judgment";
-import { TapNote } from "../tapNotes/TapNote";
+import { SlideStartNote } from "./SlideStartNote";
 
-export class NormalSlideStartNote extends TapNote {
+export class NormalSlideStartNote extends SlideStartNote {
     judgmentTimes = noteJudgments.NormalSlideStartNote;
     noteTypeMeta = noteTypeMeta.NormalSlideStartNote;
 }
