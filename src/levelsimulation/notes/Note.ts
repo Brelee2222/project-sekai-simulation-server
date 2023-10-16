@@ -1,21 +1,23 @@
-import { EngineArchetypeDataName, LevelDataEntity } from "sonolus-core";
-import { NoteDataMeta, NoteState } from "..";
+import { EngineArchetypeDataName } from "sonolus-core";
+import { NoteDataMeta, NoteState } from "../noteMeta";
 import { Judgment } from "../judgment";
-import { getEntityDataName } from "..";
 import { Hitbox } from "../utils/geometry/Hitbox";
-import { NoteTypeMeta } from "..";
-import { beatAt } from "../utils/beat";
+import { NoteTypeMeta } from "../noteMeta";
+import { beatAt, beatAtTime } from "../utils/beat";
 import { touches } from "../utils/touches";
 import { Touch } from "../utils/geometry/Touch";
 import { Vector2 } from "../utils/geometry/Vector2";
 import { hitboxBottom, hitboxTop } from ".";
+import { LevelArchetype } from "../utils/LevelArchetype";
 
-export class Note {
-    entityData! : LevelDataEntity;
-
+export abstract class Note extends LevelArchetype {
+    data = this.defineData({
+        beat : { name : EngineArchetypeDataName.Beat, type : "value" },
+        lane : { name : "lane", type : "value" },
+        size : { name : "size", type : "value" }
+    });
+    
     noteTime! : number;
-
-    index! : number;
 
     hitbox! : Hitbox;
 
@@ -25,15 +27,12 @@ export class Note {
 
     state : NoteState = NoteState.Idle;
 
-    noteTypeMeta! : NoteTypeMeta;
+    abstract noteTypeMeta : NoteTypeMeta;
 
     init() : void {
-        this.noteTime = beatAt((getEntityDataName(this.entityData, EngineArchetypeDataName.Beat) as { value : number }).value).time;
+        this.noteTime = beatAt(this.data.beat).time;
 
-        const lEdge = (getEntityDataName(this.entityData, "lane") as { value : number }).value;
-        const rEdge = lEdge + (getEntityDataName(this.entityData, "size") as { value : number }).value;
-
-        this.hitbox = new Hitbox(new Vector2(rEdge, hitboxTop), new Vector2(lEdge, hitboxBottom)); 
+        this.hitbox = new Hitbox(new Vector2(this.data.lane, hitboxTop), new Vector2(this.data.lane + this.data.size, hitboxBottom)); 
     }
 
     update() : void {
@@ -59,5 +58,9 @@ export class Note {
         return [ 0, 0 ];
     }
 
-    judge(touch : Touch) : void {};
+    replay() {
+        this.entityData.data.push({ name : "tap", value : beatAtTime(this.tap).beat });
+    }
+
+    abstract judge(touch : Touch) : void;
 }

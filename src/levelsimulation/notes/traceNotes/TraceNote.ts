@@ -1,6 +1,6 @@
-import { NoteState } from "../..";
+import { NoteState } from "../../noteMeta";
 import { JudgmentTimes, judgeTime } from "../../judgment";
-import { time } from "../../levelSimulation";
+import { time } from "../..";
 import { Touch } from "../../utils/geometry/Touch";
 import { Note } from "../Note";
 
@@ -27,6 +27,6 @@ export abstract class TraceNote extends Note {
     judge(touch : Touch) : void {
         this.tap = touch.touchTime;
         this.state = NoteState.Inactive;
-        this.judgment = judgeTime(this.noteTime, touch, this.judgmentTimes);
+        this.judgment = judgeTime(this.noteTime, touch.touchTime, this.judgmentTimes);
     }
 }

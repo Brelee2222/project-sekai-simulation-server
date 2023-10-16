@@ -1,21 +1,27 @@
 import { Judgment } from "../../../judgment";
 import { Touch } from "../../../utils/geometry/Touch";
-import { flicking, flickingCorrectDirection, getFlickDirection } from "../../flick";
+import { flicking, flickingCorrectDirection } from "../../flick";
 import { TraceNote } from "../TraceNote";
 
 export abstract class FlickTraceNote extends TraceNote {
-    flickDirection! : number;
+    flickDirection = this.defineData({
+        flickDirection : { name : "direction", type : "value" }
+    }).flickDirection;
 
-    init() {
-        super.init();
+    correctDirection : number = 1;
 
-        this.flickDirection = getFlickDirection(this.entityData);
+    replay() {
+        super.replay();
+        this.entityData.data.push({ name : "correctdirection", value : this.correctDirection });
     }
-    
+
     judge(touch : Touch) {
         super.touch();
 
-        if(this.judgment == Judgment.Perfect && !flickingCorrectDirection(touch, this.flickDirection)) this.judgment = Judgment.Great;
+        if(this.judgment == Judgment.Perfect && !flickingCorrectDirection(touch, this.flickDirection)) {
+            this.judgment = Judgment.Great;
+            this.correctDirection = 0;
+        }
     }
 
     shouldJudge(touch: Touch) : boolean {

@@ -1,5 +1,3 @@
-import { Touch } from "./utils/geometry/Touch";
-
 export enum Judgment {
     Perfect,
     Great,
@@ -23,9 +21,9 @@ export type JudgmentTimes = {
     ];
 };
 
-export function judgeTime(noteTime: number, touch: Touch, judgmentFrames: JudgmentTimes): Judgment {
-    const difference = Math.abs(noteTime - touch.touchTime);
-    const judgments = noteTime > touch.touchTime ? judgmentFrames.before : judgmentFrames.after;
+export function judgeTime(noteTime: number, judgmentTime : number, judgmentFrames: JudgmentTimes): Judgment {
+    const difference = Math.abs(noteTime - judgmentTime);
+    const judgments = noteTime > judgmentTime ? judgmentFrames.before : judgmentFrames.after;
 
     if (judgments[0] <= difference) return Judgment.Perfect;
     if (judgments[1] <= difference) return Judgment.Great;

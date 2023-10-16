@@ -1,6 +1,6 @@
 import fs from "fs";
 import * as sonolus from "sonolus-core";
-import * as levelSimulation from "./levelSimulation";
+import * as levelSimulation from "../levelsimulation";
 
 async function getLevelData(name : string, version : string) : Promise<sonolus.LevelData> {
     const filePath = `./levels/${version}/${name}`;

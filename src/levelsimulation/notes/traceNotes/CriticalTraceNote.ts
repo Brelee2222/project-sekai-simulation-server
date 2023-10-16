@@ -1,4 +1,4 @@
-import { NoteTypeMeta, noteTypeMeta } from "../..";
+import { NoteTypeMeta, noteTypeMeta } from "../../noteMeta";
 import { JudgmentTimes, noteJudgments } from "../../judgment";
 import { TraceNote } from "./TraceNote";
 

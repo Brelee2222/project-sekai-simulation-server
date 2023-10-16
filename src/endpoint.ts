@@ -1,5 +1,5 @@
 import { EngineItem, LevelItem, ServerInfo } from "sonolus-core";
-import * as pjsekaiengine from "pjsekaiengine";
+import * as pjsekaiengine from "../pjsekaiengine";
 
 export type GetSonolusInfo = (url : string, sessionId : string, sessionData : string) => Promise<{"Sonolus-Version" : string, "data" : any}>;
 

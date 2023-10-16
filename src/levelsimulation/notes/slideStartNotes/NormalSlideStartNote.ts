@@ -1,4 +1,4 @@
-import { noteTypeMeta } from "../..";
+import { noteTypeMeta } from "../../noteMeta";
 import { noteJudgments } from "../../judgment";
 import { SlideStartNote } from "./SlideStartNote";
 

@@ -1,5 +1,5 @@
 import { EngineArchetypeDataName, EngineArchetypeName, LevelDataEntity } from "sonolus-core";
-import { getEntityDataName } from "..";
+import { getEntityDataName } from "../noteMeta";
 
 export type TimeStamp = {
     beat: number;

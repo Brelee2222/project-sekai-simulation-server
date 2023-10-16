@@ -1,6 +1,6 @@
 import express from "express";
-import { getSimulatedLevelData } from "./levelsimulation/readlevel";
-import * as pjsekaiengine from "pjsekaiengine";
+import { getSimulatedLevelData } from "./levelData";
+import * as pjsekaiengine from "../pjsekaiengine";
 import { getInfo, getLevelList, getLevels } from "./endpoint";
 
 const port = 3000;

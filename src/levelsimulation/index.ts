@@ -1,31 +1,46 @@
-import { LevelDataEntity } from "sonolus-core";
+import { LevelData, LevelDataEntity } from "sonolus-core";
+import { Note } from "./notes/Note";
+import { loadBeats } from "./utils/beat";
+import { updateTouches } from "./utils/touches";
+import { noteTypes } from "./notes";
+import { createArchetype } from "./utils/LevelArchetype";
 
-export enum NoteState {
-    Active,
-    Inactive,
-    Idle
+let notes : Note[];
+
+export let time: number;
+
+export function loadLevel(levelData : LevelData) {
+    const levelEntities : LevelDataEntity[] = levelData.entities;
+
+    time = 0;
+
+    loadBeats(levelEntities);
+
+    notes = levelEntities
+    .filter(entity => noteTypes[entity.archetype] !== undefined)
+    .map(note => 
+        createArchetype<Note>(noteTypes[note.archetype] as any, note, levelEntities.indexOf(note))
+    );
+    
+    notes.forEach(note => note.init());
 }
 
-export type NoteTypeMeta = number[] & { length: 2 };
-export type NoteDataMeta = number[] & { length: 2 };
+export function replayLevel() : void {
+    notes.forEach(note => note.replay());
+}
 
-export const noteTypeMeta = {
-    NormalTraceNote: [1, 1],
-    CriticalTraceNote: [1, 1],
-    NormalFlickTraceNote: [1, 1],
-    CriticalFlickTraceNote: [1, 1],
-    NormalTapNote: [1, 1],
-    CriticalTapNote: [1, 1],
-    NormalFlickNote: [1, 1],
-    CriticalFlickNote: [1, 1],
-    NormalSlideStartNote: [1, 1],
-    CriticalSlideStartNote: [1, 1],
-    NormalSlideEndNote: [1, 1],
-    CriticalSlideEndNote: [1, 1],
-    NormalSlideEndFlickNote: [1, 1],
-    CriticalSlideEndFlickNote: [1, 1]
-} satisfies { [key: string]: NoteTypeMeta; };
+export function step(seconds : number) {
+    time += seconds;
 
-export function getEntityDataName(entity: LevelDataEntity, name: string) {
-    return entity.data.find(data => data.name == name);
+    notes.forEach(note => note.touch());
+
+    updateTouches();
+
+    notes.forEach(note => note.update());
+}
+
+export function auto() : void {
+    notes.forEach(note => {
+        note.tap = note.noteTime;
+    });
 }
