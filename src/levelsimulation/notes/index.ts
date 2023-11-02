@@ -13,7 +13,6 @@ import { NormalSlideEndNote } from "./slideEndNotes/NormalSlideEndNote";
 import { CriticalSlideEndNote } from "./slideEndNotes/CriticalSlideEndNote";
 import { NormalSlideEndFlickNote } from "./slideEndNotes/slideEndFlickNotes/NormalSlideEndFlickNote";
 import { CriticalSlideEndFlickNote } from "./slideEndNotes/slideEndFlickNotes/CriticalSlideEndFlickNote";
-import { HiddenSlideTickNote } from "./slideTickNotes/HiddenSlideTickNote";
 import { NormalSlideTickNote } from "./slideTickNotes/visibleSlideTickNotes/NormalSlideTickNote";
 import { CriticalSlideTickNote } from "./slideTickNotes/visibleSlideTickNotes/CriticalSlideTickNote";
 import { NormalAttachedSlideTickNote } from "./slideTickNotes/visibleSlideTickNotes/attachedSlideTickNotes/NormalAttachedSlideTickNote";

@@ -55,7 +55,7 @@ export abstract class Note extends LevelArchetype {
     }
 
     get noteDataMeta() : NoteDataMeta {
-        return [ 0, 0 ];
+        return [ 0, 0, 0, 0 ];
     }
 
     replay() {
